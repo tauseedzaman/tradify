@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\TradController;
+use App\Http\Livewire\AddTrad;
+use App\Http\Livewire\EditTrad;
+use App\Http\Livewire\Trads;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware([])->group(function () {
-    Route::get("/", [TradController::class, "index"])->name("trads");
-    Route::get("/add", [TradController::class, "create"])->name("trad.add");
-    Route::post("/add", [TradController::class, "store"])->name("trad.save");
-    Route::get("/edit/{id}", [TradController::class, "edit"])->name("trad.edit");
-    Route::post("/edit/{id}", [TradController::class, "update"])->name("trad.update");
-    Route::get("/delete/{id}", [TradController::class, "destroy"])->name("trad.delete");
-});
-
 Auth::routes();
+Route::get('/', Trads::class)->name("home");
+Route::get('/add-trad', AddTrad::class)->name("add_trad");
+Route::get('/edit-trad/{id}', EditTrad::class)->name("edit_trad");
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
